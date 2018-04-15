@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var ordersRouter = require('./routes/orders');
 var customersRouter = require('./routes/customers');
 var productsRouter = require('./routes/products');
+app.use(express.static('./static'));
 
 app.use('/', indexRouter);
 app.use('/customers',  customersRouter);
