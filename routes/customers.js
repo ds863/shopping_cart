@@ -7,6 +7,9 @@ router.get('/', function(req, res, next) {
 	res.status(500).json({ error: 'no results found' });
 
 });
+router.get('/update/shipping', function(req, res) {
+	res.sendFile(path.join(__dirname, "../routes", "../static/shipping.html"), {dotfiles: "allow"})
+});
 router.post('/update/shipping', function(req, res) {
 	
 	res.status(500).json({ error: 'no results found' });
