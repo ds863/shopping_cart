@@ -5,7 +5,12 @@ var router = express.Router();
 
 
 router.get('/', function(req, res) {
-	res.status(500).json({ error: 'no results found' });
+	if(req.session.Username !== 'doe@mymusicstore.com a'){
+		console.log('no')
+	} else {
+		console.log('yes')
+	}
+	//res.status(500).json({ error: 'no results found' });
 });
 router.post('/add', function(req, res) {
 	
