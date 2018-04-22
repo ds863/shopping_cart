@@ -6,13 +6,15 @@ var cookieSession = require('cookie-session')
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var app = express();
-var dbConn = mongoose.connect('mongodb://127.0.0.1:27017/data', function(err, db){
-  if(err){
-    console.log(err)
-  }
-  console.log("connected to server")
+var url = 'mongodb://127.0.0.1:27017/data/users';
+var db; 
+mongodb.connect(url, function(err, dbase){
+	if(err){
+		console.log(err);
+	} 
+	console.log('connected');
+	db = dbase;
 })
-
 app.use(cookie());
 app.use(cookieSession({secret: '123'}))
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,6 +26,8 @@ var productsRouter = require('./routes/products');
 var logInRouter = require('./routes/log');
 var registerRouter = require('./routes/register');
 app.use(express.static('./static'));
+
+
 
 app.use('/', indexRouter);
 app.use('/customers',  customersRouter);
