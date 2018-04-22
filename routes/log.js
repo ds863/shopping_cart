@@ -15,14 +15,14 @@ router.post('/login', function(req, res){
 	var usr = req.body.Username;
 	req.session.user = req.body.Username;
 	req.session.pw = req.body.Password;
-	if(req.session.user === 'doe@mymusicstore.com' && req.session.pw === 'welcome1'){
+	if(req.session.User === 'doe@mymusicstore.com' && req.session.Password === 'welcome1'){
 		res.redirect('/orders')
-		
+
 	} else {
 		res.send("Access Denied")
 	}
 	console.log(usr)
-	
+
 });
 router.get('/logout', function(req, res){
 	req.session.destroy()
