@@ -6,7 +6,12 @@ var cookieSession = require('cookie-session')
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var app = express();
-
+var dbConn = mongoose.connect('mongodb://127.0.0.1:27017/data', function(err, db){
+  if(err){
+    console.log(err)
+  }
+  console.log("connected to server")
+})
 
 app.use(cookie());
 app.use(cookieSession({secret: '123'}))
