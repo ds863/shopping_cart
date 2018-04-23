@@ -1,6 +1,6 @@
-const router = require("express").Router()
+var router = require("express").Router()
 
-const userController = require("./controller")
+var userController = require("./controller")
 
 
 router.get("/findByEmail/:email", userController.findByEmail);

@@ -1,12 +1,12 @@
 
 
-const User = require('./model')
+var User = require('./model')
 
 
-const create = (req, res) => {
-	const { name, surename, email } = req.body
+var create = (req, res) => {
+	var { name, surename, email } = req.body
 
-	const user = { name, surename, email };  
+	var user = { name, surename, email };  
 
 	
 	User.create(user, (err, user) => {
@@ -18,8 +18,8 @@ const create = (req, res) => {
 
 }
 
-const findByEmail = (req, res) => {
-	const { email } = req.params;
+var findByEmail = (req, res) => {
+	var { email } = req.params;
 
 	User.find({ email }, (err, user) => {
 		if(err)
@@ -30,7 +30,7 @@ const findByEmail = (req, res) => {
 
 }
 
-const index = (req, res) => {
+var index = (req, res) => {
 	User.find({}, (err, user) => {
 		if(err)
 			res.status(500).send('Internal Server Error')

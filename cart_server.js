@@ -1,12 +1,12 @@
-const express = require("express");
-const path = require('path');
-const bodyParser = require('body-parser')
-const cookie = require('cookie-parser')
-const cookieSession = require('cookie-session')
+var express = require("express");
+var path = require('path');
+var bodyParser = require('body-parser')
+var cookie = require('cookie-parser')
+var cookieSession = require('cookie-session')
 
 require('./config/db');
 
-const app = express();
+var app = express();
 
 app.use(cookie());
 app.use(cookieSession({secret: '123'}))
@@ -14,15 +14,15 @@ app.use(cookieSession({secret: '123'}))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const indexRouter = require('./routes/index');
-const ordersRouter = require('./routes/orders');
-const customersRouter = require('./routes/customers');
-const productsRouter = require('./routes/products');
-const logInRouter = require('./routes/log');
-const registerRouter = require('./routes/register');
+var indexRouter = require('./routes/index');
+var ordersRouter = require('./routes/orders');
+var customersRouter = require('./routes/customers');
+var productsRouter = require('./routes/products');
+var logInRouter = require('./routes/log');
+var registerRouter = require('./routes/register');
 
 
-const userRouter = require('./modules/user/routes');
+var userRouter = require('./modules/user/routes');
 
 app.use(express.static('./static'));
 

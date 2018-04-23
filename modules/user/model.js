@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 
-const validateEmail = email =>
+var validateEmail = email =>
 	/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 
 
-const UserSchema = new Schema({
+var UserSchema = new Schema({
 	name: {
 		type: String,
 		require: true
