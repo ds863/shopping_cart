@@ -44,22 +44,37 @@ var index = function(req, res){
 			res.status(200).json(user)
 	})
 }
-var compareEmailAndPassword = function(req, res){
-	var em = req.body.un;
-	var pw = req.body.pw;
-	if(em === User.find({ email }))
-	console.log(em)
+var compareEmailAndPassword = function(req, res) {
+	var { password, email } = req.body;
+	var user = { password, email };
+	if((JSON.stringify(req.body.email) === JSON.stringify(user.email)) && (JSON.stringify(req.body.password) === JSON.stringify(user.email)) ){
+		res.redirect('/products')
+	} else {
+		res.status(500).json({ error: 'no results found' });
+	}
 	
 
-	/*
-	code to compare email and password here
-	*/
-}
-
+	
+	User.find({ password, email }, function(err, user) {
+		if(err){
+			console.log(err)
+		} else {
+			console.log(user.email)
+		}
+  
+    
+               
+    })
+    
+ }
+ var resetPassword = function(){
+ 	
+ }
 module.exports = {
 	create,
 	findByEmail,
 	index,
-	compareEmailAndPassword
+	compareEmailAndPassword,
+	resetPassword
 } 
 

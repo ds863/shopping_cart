@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 
 
-mongoose.connect('mongodb://localhost/cart-app'); //the last thing is always the db name
+mongoose.connect('mongodb://localhost/cart-app'); 
 
 var db = mongoose.connection; 
 
