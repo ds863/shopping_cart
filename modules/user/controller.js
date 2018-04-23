@@ -4,11 +4,11 @@ var User = require('./model')
 
 
 var create = function(req, res) {
-	var { name, surename, email } = req.body
+	var { name, surename, password, customer_id, email } = req.body
 
-	var user = { name, surename, email };  
+	var user = { name, surename, password, customer_id, email };  
 
-	
+
 	User.create(user, function(err, user) {
 		if(err)
 			res.status(400).json(err)
@@ -18,10 +18,10 @@ var create = function(req, res) {
 
 }
 
-var findByEmail = function(req, res) {
-	var { email } = req.params;
+var findByName = function(req, res) {
+	var { name, surename } = req.params;
 
-	User.find({ email }, (err, user) => {
+	User.find({ name, surename }, function(err, user) {
 		if(err)
 			res.status(500).send('Internal Server Error')
 		else
@@ -41,7 +41,7 @@ var index = function(req, res){
 
 module.exports = {
 	create,
-	findByEmail,
+	findByName,
 	index
 } 
 

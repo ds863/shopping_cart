@@ -35,6 +35,6 @@ app.use('/orders',  ordersRouter);
 app.use('/products', productsRouter);
 app.use('/login', logInRouter)
 app.use('/register', registerRouter)
-app.use('/user', userRouter);
+app.use('/', userRouter);
 app.listen(1337);
 module.exports = app;

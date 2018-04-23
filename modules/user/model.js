@@ -16,6 +16,14 @@ var UserSchema = new Schema({
 		type: String,
 		require: true
 	},
+	password: {
+		type: String,
+		require: true
+	},
+	customer_id: {
+    unique: true,
+    type: Number
+	},
 	email:  {
 		type: String,
 		require: true,
