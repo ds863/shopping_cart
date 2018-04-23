@@ -3,22 +3,16 @@ var path = require('path');
 var bodyParser = require('body-parser')
 var cookie = require('cookie-parser')
 var cookieSession = require('cookie-session')
-var mongodb = require('mongodb');
-var mongoose = require('mongoose');
+
 var app = express();
-var url = 'mongodb://127.0.0.1:27017/data/users';
-var db; 
-mongodb.connect(url, function(err, dbase){
-	if(err){
-		console.log(err);
-	} 
-	console.log('connected');
-	db = dbase;
-})
+
+
 app.use(cookie());
 app.use(cookieSession({secret: '123'}))
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 var indexRouter = require('./routes/index');
 var ordersRouter = require('./routes/orders');
 var customersRouter = require('./routes/customers');
@@ -34,6 +28,6 @@ app.use('/customers',  customersRouter);
 app.use('/orders',  ordersRouter);
 app.use('/products', productsRouter);
 app.use('/login', logInRouter)
-app.use('register', registerRouter)
+app.use('/register', registerRouter)
 app.listen(8080);
 module.exports = app;
