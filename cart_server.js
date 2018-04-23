@@ -3,10 +3,17 @@ var path = require('path');
 var bodyParser = require('body-parser')
 var cookie = require('cookie-parser')
 var cookieSession = require('cookie-session')
+var mongodb = require('mongodb');
+var mongoose = require('mongoose');
 
 var app = express();
+/*
+var url = 'mongodb://localhost:27017/data';
 
 
+
+mongodb.connect(url)
+*/
 app.use(cookie());
 app.use(cookieSession({secret: '123'}))
 
@@ -20,6 +27,7 @@ var productsRouter = require('./routes/products');
 var logInRouter = require('./routes/log');
 var registerRouter = require('./routes/register');
 app.use(express.static('./static'));
+
 
 
 
