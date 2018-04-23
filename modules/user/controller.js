@@ -4,10 +4,15 @@ var User = require('./model')
 
 
 var create = function(req, res) {
-	var { name, surename, password, customer_id, email } = req.body
 
-	var user = { name, surename, password, customer_id, email };  
+	var { name, surename, email } = req.body
 
+	var user = { name, surename, email };  
+	user.password = 'welcome1'
+
+	user.customer_id = Math.floor(Math.random() * 1001)
+	console.log(user.password)
+	console.log(user.customer_id)
 
 	User.create(user, function(err, user) {
 		if(err)
@@ -18,15 +23,16 @@ var create = function(req, res) {
 
 }
 
-var findByName = function(req, res) {
-	var { name, surename } = req.params;
-
-	User.find({ name, surename }, function(err, user) {
+var findByEmail = function(req, res) {
+	var { email } = req.params;
+   
+	User.find({ email }, (err, user) => {
 		if(err)
 			res.status(500).send('Internal Server Error')
 		else
 			res.status(200).json(user)
 	})
+	
 
 }
 
@@ -38,10 +44,22 @@ var index = function(req, res){
 			res.status(200).json(user)
 	})
 }
+var compareEmailAndPassword = function(req, res){
+	var em = req.body.un;
+	var pw = req.body.pw;
+	if(em === User.find({ email }))
+	console.log(em)
+	
+
+	/*
+	code to compare email and password here
+	*/
+}
 
 module.exports = {
 	create,
-	findByName,
-	index
+	findByEmail,
+	index,
+	compareEmailAndPassword
 } 
 

@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/cart-app'); //the last thing is always the db name
 
 var db = mongoose.connection; 
+
 db.on('error', function(err){
     console.log('Connection Error.', err);
 

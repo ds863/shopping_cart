@@ -5,25 +5,13 @@ var cookieSession = require('cookie-session')
 var router = express.Router();
 router.use(cookie());
 router.use(cookieSession({secret: '123'}))
-
+var userController = require("../modules/user/controller")
 
 
 router.get('/', function(req, res){
 	res.sendFile(path.join(__dirname, "../static", "login.html"), {dotfiles: "allow"})
 });
-router.post('/login', function(req, res){
-	var usr = req.body.Username;
-	req.session.user = req.body.Username;
-	req.session.pw = req.body.Password;
-	if(req.session.User === 'doe@mymusicstore.com' && req.session.Password === 'welcome1'){
-		res.redirect('/orders')
-
-	} else {
-		res.send("Access Denied")
-	}
-	console.log(usr)
-
-});
+router.post('/', userController.compareEmailAndPassword);
 router.get('/logout', function(req, res){
 	req.session.destroy()
 });

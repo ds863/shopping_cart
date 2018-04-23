@@ -2,10 +2,10 @@ var router = require("express").Router()
 
 var userController = require("./controller")
 
-router.get('/', userController.index);
-router.get("/findByName/:name", userController.findByName);
+router.get('/admin', userController.index);
+router.get("/findByEmail/:email", userController.findByEmail);
 
-router.get('/listUsers', userController.index);
+//router.get('/listUsers', userController.index);//different route path same end location
 
 module.exports = router
 
