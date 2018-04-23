@@ -24,16 +24,26 @@ var create = function(req, res) {
 }
 
 var findByEmail = function(req, res) {
-	var { email } = req.params;
+    var { email } = req.params;
+
+    User.find({ email }, function(err, user) {
+        if (err)
+            res.status(500).send('Internal Server Error')
+        else
+            res.status(200).json(user)
+    })
+
+}
+var findByCustId = function(req, res) {
+	var { customer_id } = req.params;
    
-	User.find({ email }, (err, user) => {
+	User.find({ customer_id }, function(err, user) {
 		if(err)
 			res.status(500).send('Internal Server Error')
 		else
 			res.status(200).json(user)
 	})
 	
-
 }
 
 var index = function(req, res){
@@ -46,33 +56,31 @@ var index = function(req, res){
 }
 var compareEmailAndPassword = function(req, res) {
 	var { password, email } = req.body;
-	var user = { password, email };
-	if((JSON.stringify(req.body.email) === JSON.stringify(user.email)) && (JSON.stringify(req.body.password) === JSON.stringify(user.email)) ){
+	var userSignIn = { password, email };
+	if((JSON.stringify(req.body.email) === JSON.stringify(userSignIn.email)) && (JSON.stringify(req.body.password) === JSON.stringify(userSignIn.email)) ){
 		res.redirect('/products')
 	} else {
 		res.status(500).json({ error: 'no results found' });
-	}
-	
-
-	
-	User.find({ password, email }, function(err, user) {
-		if(err){
-			console.log(err)
-		} else {
-			console.log(user.email)
-		}
-  
-    
-               
-    })
+	} 
     
  }
- var resetPassword = function(){
+ var resetPassword = function(req, res){
+ 	
+ 	var { password } = req.body
+
+	var userCred = { password }; 
+ 	if((JSON.stringify(req.body.password) === JSON.stringify(userCred.password))){
+ 		console.log((JSON.stringify(req.body.password) === JSON.stringify(userCred.password)))
+ 	} else {
+ 		
+ 	}
+ 	
  	
  }
 module.exports = {
 	create,
 	findByEmail,
+	findByCustId,
 	index,
 	compareEmailAndPassword,
 	resetPassword
